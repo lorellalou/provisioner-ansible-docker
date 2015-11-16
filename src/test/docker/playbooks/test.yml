@@ -1,0 +1,12 @@
+---
+
+- include: default.yml
+
+- name: Deploy docker environment
+  hosts: all
+  user: root
+  vars_files:
+    - hostname/{{ansible_hostname}}.yml 
+  tasks:
+    - name: Hello server
+      shell: echo "{{message}}"

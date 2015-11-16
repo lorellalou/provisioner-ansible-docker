@@ -1,0 +1,25 @@
+---
+
+- name: Add docker user
+  hosts: all
+  user: root
+  tasks:
+    - user: name=docker shell=/bin/bash group=docker home=/data/docker
+    - file: path=/data/docker mode=2770
+
+- name: Install docker-compose
+  hosts: all
+  user: root
+  tasks:
+    - get_url: url=https://github.com/docker/compose/releases/download/1.5.1/docker-compose-Linux-x86_64 dest=/usr/local/bin/docker-compose mode=755
+
+- name: Create docker directories
+  hosts: all
+  user: root
+  tasks:
+    - file: path=/data/docker/compose state=directory owner=docker group=docker mode=0770 
+    - file: path=/data/docker/environment state=directory owner=docker group=docker mode=0770 
+  
+
+      
+      

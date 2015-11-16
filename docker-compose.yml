@@ -1,0 +1,8 @@
+provision:
+  build: src/main/docker
+  net: host
+  command: /playbooks/test.yml
+  volumes:
+    - /root/.ssh:/hostssh
+    - ./src/test/docker/playbooks/test.yml:/playbooks/test.yml
+    - ./src/test/docker/playbooks/hostname:/playbooks/hostname
